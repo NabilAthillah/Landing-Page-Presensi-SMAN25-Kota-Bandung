@@ -21,7 +21,7 @@ const menuItems = [
   {
     name: 'Jadwal Mata Pelajaran',
     icon: ChartBarIcon,
-    path: '/jadwal'
+    path: '/Jadwal'
   },
 ]
 
@@ -36,7 +36,7 @@ const Sidebar = () => {
   return (
     <div
       className={`
-        fixed left-0 top-0 h-screen bg-white border-r border-gray-200 
+        relative left-0 top-0 h-screen bg-white border-r border-gray-200 
         transition-all duration-300 ease-in-out z-50
         ${isCollapsed ? 'w-16' : 'w-64'}
       `}
@@ -92,4 +92,4 @@ const Sidebar = () => {
   )
 }
 
-export default Sidebar
+export default Sidebar
