@@ -31,6 +31,10 @@ const Login = () => {
             if(response.status === 200) {
                 localStorage.setItem('presensi_sman25_kota_bandung_auth_token', response.data.token);
                 localStorage.setItem('presensi_sman25_kota_bandung_auth_role', response.data.role);
+
+                setNisnip('');
+                setPassword('');
+
                 Swal.fire({
                     title: 'Success!',
                     text: response.data.message,
