@@ -5,7 +5,9 @@ import Swal from 'sweetalert2';
 const Navbar = () => {
 
   const router = new useRouter();
+  const role = localStorage.getItem('presensi_sman25_kota_bandung_auth_role');
 
+  
   const handleLogout = async (e) => {
     e.preventDefault();
 
@@ -31,9 +33,9 @@ const Navbar = () => {
         <div className="form-control">
           <div className='col-auto  text-center'>
             <div>
-              Siswa/Guru/Admin/Ortu
+            {name ? name : 'Nama tidak ditemukan'}
             </div>
-            Role
+            {role ? role : 'Role tidak ditemukan'}
           </div>
         </div>
         <div className="dropdown dropdown-end">
@@ -46,7 +48,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+            className="menu menu-sm dropdown-content bg-white rounded-box z-[1] mt-3 w-52 p-2 shadow">
             <li>
               <a className="justify-between">
                 Profile

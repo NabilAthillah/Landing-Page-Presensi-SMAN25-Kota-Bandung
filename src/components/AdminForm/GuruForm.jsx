@@ -1,104 +1,123 @@
-import React from 'react'
-import axios from 'axios'
-import { useState, useEffect } from 'react'
-
+"use client";
+import React, { useState } from "react";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const GuruForm = () => {
-    const [teachers, setTeachers] = useState([]);
-    const [formData, setFormData] = useState({
-      id: "",
-      name: "",
-      email: "",
-      phone_number: "",
-      role: "",
-    });
-    const [isEdit, setIsEdit] = useState(false); 
+  const [nip, setNip] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [address, setAddress] = useState("");
+  const router = useRouter();
 
-  
-    const handleInputChange = (e) => {
-      const { name, value } = e.target;
-      setFormData({ ...formData, [name]: value });
-    };
-  
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      if (isEdit) {
-        try {
-          await axios.put(`${process.env.NEXT_PUBLIC_API_BASE_URL}/data/edit/teacher/${formData.id}`, formData);
-          alert("Teacher updated successfully!");
-        } catch (error) {
-          console.error("Error updating teacher:", error);
-        }
-      } else {
-        try {
-          await axios.post(`${process.env.NEXT_PUBLIC_API_BASE_URL}/data/store/teacher`, formData);
-          alert("Teacher added successfully!");
-        } catch (error) {
-          console.error("Error adding teacher:", error);
-        }
-      }
-      setFormData({ id: "", name: "", email: "", phone_number: "", role: "" });
-      setIsEdit(false);
-    };
-  
-    const handleDelete = async (nip) => {
-      try {
-        await axios.delete(`${process.env.NEXT_PUBLIC_API_BASE_URL}/data/delete/teacher/${nip}`);
-        setTeachers(teachers.filter((teacher) => teacher.nip !== nip));
-      } catch (error) {
-        console.error("Error deleting teacher:", error);
-      }
-    };
-  
-    return (
-      <div>
-        <h1 className="text-2xl font-bold mb-4">{isEdit ? "Edit Teacher" : "Add Teacher"}</h1>
-  
-        {/* Form for adding or editing a teacher */}
-        <form onSubmit={handleSubmit} className="mb-4">
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            placeholder="Name"
-            required
-            className="px-4 py-2 mb-2"
-          />
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            placeholder="Email"
-            required
-            className="px-4 py-2 mb-2"
-          />
-          <input
-            type="text"
-            name="phone_number"
-            value={formData.phone_number}
-            onChange={handleInputChange}
-            placeholder="Phone Number"
-            className="px-4 py-2 mb-2"
-          />
-          <input
-            type="text"
-            name="role"
-            value={formData.role}
-            onChange={handleInputChange}
-            placeholder="Role"
-            className="px-4 py-2 mb-2"
-          />
-          <button
-            type="submit"
-            className="px-4 py-2 bg-blue-500 text-white"
-          >
-            {isEdit ? "Update Teacher" : "Add Teacher"}
-          </button>
-        </form>
-    </div>
-  )
-}
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+    //   const token = localStorage.getItem(
+    //     "presensi_sman25_kota_bandung_auth_token"
+    //   );
 
-export default GuruForm
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/data/store/teacher`,
+        { nip, name, email, phone_number: phoneNumber, address },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            // Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.status === 201) {
+        alert("Guru berhasil ditambahkan!");
+        router.push("/administrator");
+      }
+    } catch (error) {
+      console.error("Error adding teacher:", error);
+      alert("Gagal menambahkan guru.");
+    }
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="max-w-lg mx-auto bg-white p-8 shadow-md"
+    >
+
+      <h2 className="text-2xl font-bold mb-4">Tambah Guru</h2>
+      {/* NIP */}
+      <label className="input input-bordered border-emerald-950 flex items-center gap-2 bg-white">
+        NIP
+        <input
+          type="text"
+          value={nip}
+          onChange={(e) => setNip(e.target.value)}
+          className="grow"
+          requiredplaceholder="123456789" />
+      </label>
+      {/* Nama */}
+      <div className="mt-4">
+      <label className="input input-bordered border-emerald-950 flex items-center gap-2 bg-white">
+        Nama
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="grow"
+          requiredplaceholder="Nama" />
+      </label>
+      {/* Email */}
+      </div>
+      <div className="mt-4">
+        <label className="input input-bordered border-emerald-950 flex items-center gap-2 bg-white">
+            Email
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="grow"
+          requiredplaceholder="Email"
+        />
+        </label>
+      </div>
+        {/* No.Telp */}
+      <div className="mt-4">
+        <label className="input input-bordered border-emerald-950 flex items-center gap-2 bg-white">
+            No. Telepon
+        <input
+          type="text"
+          value={phoneNumber}
+          onChange={(e) => setPhoneNumber(e.target.value)}
+          className="grow"
+          required
+          placeholder="08123456789"
+        />
+        </label>
+      </div>
+        {/* Alamat */}
+      <div className="mt-4">
+        <label className="input input-bordered border-emerald-950 flex items-center gap-2 bg-white">
+            Alamat
+        <input
+          type="text"
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+          className="grow"
+          required
+          placeholder="Jln. Contoh Nomor 212, Contoh, Kota Contoh, Provinsi Contoh"
+        />
+        </label>
+      </div>
+        {/* Button */}
+      <button
+        type="submit"
+        className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+      >
+        Tambah Guru
+      </button>
+    </form>
+  );
+};
+
+export default GuruForm;
