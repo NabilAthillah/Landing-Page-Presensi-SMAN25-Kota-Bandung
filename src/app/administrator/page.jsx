@@ -2,6 +2,7 @@
 
 import GuruForm from '@/components/AdminForm/GuruForm';
 import MatpelForm from '@/components/AdminForm/MatpelForm';
+import Parents from '@/components/AdminForm/Parents';
 import Admin from '@/components/AdminTable/Admin';
 import { Guru } from '@/components/AdminTable/Guru';
 import { Matpel } from '@/components/AdminTable/Matpel';
@@ -26,6 +27,8 @@ const page = () => {
       <Guru/>
       <MatpelForm/>
       <Matpel/>
+      <Parents/>
+      <Parent/>
     </div>
   )
 }

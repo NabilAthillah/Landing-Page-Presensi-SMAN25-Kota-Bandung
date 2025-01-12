@@ -33,9 +33,6 @@ export const Guru = () => {
     }
   };
   
-  
-  
-  
 
   const handleEdit = (nip) => {
     router.push(`/administrator/AdminForm/EditGuruForm?id=${nip}`);
