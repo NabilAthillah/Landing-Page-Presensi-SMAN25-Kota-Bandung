@@ -3,12 +3,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-const GuruForm = () => {
-  const [nip, setNip] = useState("");
+const MatpelForm = () => {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [address, setAddress] = useState("");
+  const [day, setDay] = useState("");
+  const [time, setTime] = useState("");
+  const [duration, setDuration] = useState("");
+  const [teacher, setTeacher] = useState("");
+  const [className, setClassName] = useState("");
   const [isFormVisible, setIsFormVisible] = useState(false); // state for toggling the form visibility
   const router = useRouter();
 
@@ -16,8 +17,8 @@ const GuruForm = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/data/store/teacher`,
-        { nip, name, email, phone_number: phoneNumber, address },
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/data/store/subject`,
+        { name, day, time, duration, teacher, class: className },
         {
           headers: {
             "Content-Type": "application/json",
@@ -25,13 +26,13 @@ const GuruForm = () => {
         }
       );
 
-      if (response.status === 201) {
-        alert("Guru berhasil ditambahkan!");
+      if (response.status === 200) {
+        alert("Mata Pelajaran berhasil ditambahkan!");
         router.push("/administrator");
       }
     } catch (error) {
-      console.error("Error adding teacher:", error);
-      alert("Gagal menambahkan guru.");
+      console.error("Error adding subject:", error);
+      alert("Gagal menambahkan mata pelajaran.");
     }
   };
 
@@ -42,7 +43,7 @@ const GuruForm = () => {
         onClick={() => setIsFormVisible(!isFormVisible)}
         className="mb-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
       >
-        {isFormVisible ? "Tutup Form" : "Tambah Guru"}
+        {isFormVisible ? "Tutup Form" : "Tambah Mata Pelajaran"}
       </button>
 
       {/* Toggleable form */}
@@ -51,72 +52,86 @@ const GuruForm = () => {
           onSubmit={handleSubmit}
           className="max-w-lg mx-auto bg-white p-8 shadow-md"
         >
-          <h2 className="text-2xl font-bold mb-4">Tambah Guru</h2>
+          <h2 className="text-2xl font-bold mb-4">Tambah Mata Pelajaran</h2>
 
           <label className="input input-bordered border-emerald-950 flex items-center gap-2 bg-white">
-            NIP
+            Nama Mata Pelajaran
             <input
               type="text"
-              value={nip}
-              onChange={(e) => setNip(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               className="grow"
               required
-              placeholder="123456789"
+              placeholder="Nama Mata Pelajaran"
             />
           </label>
 
           <div className="mt-4">
             <label className="input input-bordered border-emerald-950 flex items-center gap-2 bg-white">
-              Nama
+              Hari
               <input
                 type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={day}
+                onChange={(e) => setDay(e.target.value)}
                 className="grow"
                 required
-                placeholder="Nama"
+                placeholder="Senin, Selasa, dst"
               />
             </label>
           </div>
 
           <div className="mt-4">
             <label className="input input-bordered border-emerald-950 flex items-center gap-2 bg-white">
-              Email
+              Waktu
               <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                type="text"
+                value={time}
+                onChange={(e) => setTime(e.target.value)}
                 className="grow"
                 required
-                placeholder="Email"
+                placeholder="08:00 - 10:00"
               />
             </label>
           </div>
 
           <div className="mt-4">
             <label className="input input-bordered border-emerald-950 flex items-center gap-2 bg-white">
-              No. Telepon
+              Durasi
               <input
                 type="text"
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
+                value={duration}
+                onChange={(e) => setDuration(e.target.value)}
                 className="grow"
                 required
-                placeholder="08123456789"
+                placeholder="1 Jam"
               />
             </label>
           </div>
 
           <div className="mt-4">
             <label className="input input-bordered border-emerald-950 flex items-center gap-2 bg-white">
-              Alamat
+              Guru
               <input
                 type="text"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
+                value={teacher}
+                onChange={(e) => setTeacher(e.target.value)}
                 className="grow"
                 required
-                placeholder="Jln. Contoh Nomor 212, Contoh, Kota Contoh, Provinsi Contoh"
+                placeholder="Nama Guru"
+              />
+            </label>
+          </div>
+
+          <div className="mt-4">
+            <label className="input input-bordered border-emerald-950 flex items-center gap-2 bg-white">
+              Kelas
+              <input
+                type="text"
+                value={className}
+                onChange={(e) => setClassName(e.target.value)}
+                className="grow"
+                required
+                placeholder="Kelas A, Kelas B, dst"
               />
             </label>
           </div>
@@ -125,7 +140,7 @@ const GuruForm = () => {
             type="submit"
             className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
           >
-            Tambah Guru
+            Tambah Mata Pelajaran
           </button>
         </form>
       )}
@@ -133,4 +148,4 @@ const GuruForm = () => {
   );
 };
 
-export default GuruForm;
+export default MatpelForm;
