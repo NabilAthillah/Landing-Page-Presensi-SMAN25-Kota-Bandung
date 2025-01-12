@@ -9,7 +9,8 @@ import {
   ChartBarIcon,
   Cog6ToothIcon,
   ChevronLeftIcon,
-  ChevronRightIcon
+  ChevronRightIcon,
+  UsersIcon,
 } from '@heroicons/react/24/outline'
 
 const menuItems = [
@@ -22,6 +23,11 @@ const menuItems = [
     name: 'Jadwal Mata Pelajaran',
     icon: ChartBarIcon,
     path: '/Jadwal'
+  },
+  {
+    name: 'Student',
+    icon: UsersIcon,
+    path: '/Students'
   },
 ]
 
