@@ -6,10 +6,9 @@ import Link from "next/link";
 
 export const Guru = () => {
   const [teachers, setTeachers] = useState([]);
-  const router = useRouter()
-
+  const router = useRouter();
   const handleClick = () => {
-    router.push('../AdminForm/GuruForm')
+    router.push("/components/AdminForm/GuruForm");
   }
 
   useEffect(() => {
@@ -20,7 +19,7 @@ export const Guru = () => {
         );
         setTeachers(response.data.teachers);
       } catch (error) {
-        console.error("Error fetching parents:", error);
+        console.error("Error fetching teachers:", error);
       }
     };
     fetchTeachers();
