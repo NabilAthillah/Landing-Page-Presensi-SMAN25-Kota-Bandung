@@ -1,8 +1,10 @@
 "use client"
 
 import GuruForm from '@/components/AdminForm/GuruForm';
+import MatpelForm from '@/components/AdminForm/MatpelForm';
 import Admin from '@/components/AdminTable/Admin';
 import { Guru } from '@/components/AdminTable/Guru';
+import { Matpel } from '@/components/AdminTable/Matpel';
 import Parent from '@/components/AdminTable/Parent';
 import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
@@ -21,6 +23,9 @@ const page = () => {
   return (
     <div>
       <GuruForm/>
+      <Guru/>
+      <MatpelForm/>
+      <Matpel/>
     </div>
   )
 }

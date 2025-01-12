@@ -23,6 +23,11 @@ const menuItems = [
     icon: ChartBarIcon,
     path: '/Jadwal'
   },
+  {
+    name: 'ADMIN',
+    icon: ChartBarIcon,
+    path: '/administrator'
+  },
 ]
 
 const Sidebar = () => {
