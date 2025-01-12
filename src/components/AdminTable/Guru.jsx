@@ -7,10 +7,8 @@ import Link from "next/link";
 export const Guru = () => {
   const [teachers, setTeachers] = useState([]);
   const router = useRouter();
-  const handleClick = () => {
-    router.push("/components/AdminForm/GuruForm");
-  }
-
+  
+  
   useEffect(() => {
     const fetchTeachers = async () => {
       try {
@@ -27,8 +25,6 @@ export const Guru = () => {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4">Guru</h1>  
-      <button onClick={handleClick} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Teacher</button>
       <table className="min-w-full bg-white shadow-md rounded">
         <thead>
           <tr className="border-b bg-gray-50">
@@ -51,7 +47,7 @@ export const Guru = () => {
           ) : (
             <tr>
               <td colSpan="4" className="py-2 px-4 text-center">
-                No teachers available
+                Tidak Ada Guru
               </td>
             </tr>
           )}

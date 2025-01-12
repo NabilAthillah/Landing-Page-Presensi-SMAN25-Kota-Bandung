@@ -1,8 +1,13 @@
+'use client'
+
 import React from 'react'
+import GuruForm from '@/components/AdminForm/GuruForm'
 
 const page = () => {
   return (
-    <div>page</div>
+    <div>
+      <GuruForm/>
+    </div>
   )
 }
 

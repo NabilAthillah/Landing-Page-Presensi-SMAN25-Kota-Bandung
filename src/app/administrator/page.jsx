@@ -1,6 +1,5 @@
 "use client"
 
-import GuruForm from '@/components/AdminForm/GuruForm';
 import Admin from '@/components/AdminTable/Admin';
 import { Guru } from '@/components/AdminTable/Guru';
 import Parent from '@/components/AdminTable/Parent';
@@ -20,7 +19,7 @@ const page = () => {
 
   return (
     <div>
-      <GuruForm/>
+      <Parent/>
     </div>
   )
 }
