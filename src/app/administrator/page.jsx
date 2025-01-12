@@ -1,5 +1,8 @@
 "use client"
 
+import Admin from '@/components/AdminTable/Admin';
+import { Guru } from '@/components/AdminTable/Guru';
+import Parent from '@/components/AdminTable/Parent';
 import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
 
@@ -15,7 +18,9 @@ const page = () => {
     }, [router]);
 
   return (
-    <div>page</div>
+    <div>
+      <Guru/>
+    </div>
   )
 }
 

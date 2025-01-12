@@ -118,6 +118,11 @@ const Login = () => {
                             >
                                 <p className="flex justify-center items-center text-white text-sm">Masuk</p>
                             </button>
+                            <div className='flex justify-center items-center pt-5'>
+                                <a href =''>
+                                <p className='text-m text-[#86C127] pl-2 cursor-pointer'>Login Sebagai Orangtua</p>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </form>
