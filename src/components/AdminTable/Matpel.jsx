@@ -8,7 +8,7 @@ export const Matpel = () => {
     const fetchSubjects = async () => {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_BASE_URL}/data/get/subjects`
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/data/get/subject`
         );
         setSubjects(response.data.subjects);
       } catch (error) {

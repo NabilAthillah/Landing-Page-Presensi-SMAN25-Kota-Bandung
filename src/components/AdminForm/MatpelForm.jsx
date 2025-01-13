@@ -84,7 +84,7 @@ const MatpelForm = () => {
             <label className="input input-bordered border-emerald-950 flex items-center gap-2 bg-white">
               Waktu
               <input
-                type="text"
+                type="time"
                 value={time}
                 onChange={(e) => setTime(e.target.value)}
                 className="grow"
@@ -98,7 +98,7 @@ const MatpelForm = () => {
             <label className="input input-bordered border-emerald-950 flex items-center gap-2 bg-white">
               Durasi
               <input
-                type="text"
+                type="number"
                 value={duration}
                 onChange={(e) => setDuration(e.target.value)}
                 className="grow"

@@ -32,7 +32,7 @@ const Student = () => {
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_API_BASE_URL}/data/get/student`
       );
-      setStudents(response.data.student);
+      setStudents(response.data.students);
     } catch (error) {
       alert("Gagal memuat data siswa. Silakan coba lagi.");
       console.error("Error fetching students:", error);
@@ -55,7 +55,7 @@ const Student = () => {
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_API_BASE_URL}/data/get/class`
       );
-      setClassesList(response.data.class);
+      setClassesList(response.data.classes);
     } catch (error) {
       console.error("Error fetching classes:", error);
     }
@@ -86,7 +86,7 @@ const Student = () => {
         );
       } else {
         await axios.post(
-          `${process.env.NEXT_PUBLIC_API_BASE_URL}/data/set/student`,
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/data/store/student`,
           formData
         );
       }
@@ -270,7 +270,7 @@ const Student = () => {
                 >
                   <option value="">Pilih Orang Tua</option>
                   {parentsList.map((parent) => (
-                    <option key={parent.id} value={parent.id}>
+                    <option key={parent.id} value={parent.email}>
                       {parent.name}
                     </option>
                   ))}
@@ -286,7 +286,7 @@ const Student = () => {
                   }
                 >
                   <option value="">Pilih Kelas</option>
-                  {classesList.map((classItem) => (
+                  {classesList && classesList.map((classItem) => (
                     <option key={classItem.id} value={classItem.id}>
                       {classItem.name}
                     </option>
