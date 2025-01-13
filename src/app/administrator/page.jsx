@@ -1,5 +1,6 @@
 "use client"
 
+import ClassForm from '@/components/AdminForm/ClassForm';
 import GuruForm from '@/components/AdminForm/GuruForm';
 import MatpelForm from '@/components/AdminForm/MatpelForm';
 import Parents from '@/components/AdminForm/Parents';
@@ -7,6 +8,8 @@ import Admin from '@/components/AdminTable/Admin';
 import { Guru } from '@/components/AdminTable/Guru';
 import { Matpel } from '@/components/AdminTable/Matpel';
 import Parent from '@/components/AdminTable/Parent';
+import Student from '@/components/AdminTable/Students';
+import StudentsUser from '@/components/AdminTable/StudentsUser';
 import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
 

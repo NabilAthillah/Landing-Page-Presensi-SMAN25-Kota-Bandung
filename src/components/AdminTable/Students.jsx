@@ -32,7 +32,7 @@ const Student = () => {
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_API_BASE_URL}/data/get/student`
       );
-      setStudents(response.data.students);
+      setStudents(response.data.student);
     } catch (error) {
       alert("Gagal memuat data siswa. Silakan coba lagi.");
       console.error("Error fetching students:", error);
@@ -42,7 +42,7 @@ const Student = () => {
   const fetchParents = async () => {
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/data/get/parents`
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/data/get/parent`
       );
       setParentsList(response.data.parents);
     } catch (error) {
@@ -53,9 +53,9 @@ const Student = () => {
   const fetchClasses = async () => {
     try {
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/data/get/classes`
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/data/get/class`
       );
-      setClassesList(response.data.classes);
+      setClassesList(response.data.class);
     } catch (error) {
       console.error("Error fetching classes:", error);
     }
@@ -151,14 +151,16 @@ const Student = () => {
           </tr>
         </thead>
         <tbody>
-          {students.length > 0 ? (
+          {students?.length > 0 ? (
             students.map((student) => (
               <tr key={student.nisn} className="border-b hover:bg-gray-50">
                 <td className="py-2 px-4 text-center">{student.nisn}</td>
                 <td className="py-2 px-4 text-center">{student.name}</td>
                 <td className="py-2 px-4 text-center">{student.email}</td>
                 <td className="py-2 px-4 text-center">{student.address}</td>
-                <td className="py-2 px-4 text-center">{student.phone_number}</td>
+                <td className="py-2 px-4 text-center">
+                  {student.phone_number}
+                </td>
                 <td className="py-2 px-4 text-center">
                   {student.parents?.name || "N/A"}
                 </td>
