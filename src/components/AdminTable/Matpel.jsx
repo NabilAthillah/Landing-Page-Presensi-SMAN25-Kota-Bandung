@@ -40,8 +40,8 @@ export const Matpel = () => {
                 <td className="py-2 px-4 text-center">{subject.day}</td>
                 <td className="py-2 px-4 text-center">{subject.time}</td>
                 <td className="py-2 px-4 text-center">{subject.duration}</td>
-                <td className="py-2 px-4 text-center">{subject.teacher_employees.map((teacher) => teacher.name).join(", ")}</td>
-                <td className="py-2 px-4 text-center">{subject.class}</td>
+                <td className="py-2 px-4 text-center">{subject.teacher?.name ?? 'N/A'}</td>
+                <td className="py-2 px-4 text-center">{subject.class?.name ?? 'N/A'}</td>
               </tr>
             ))
           ) : (
